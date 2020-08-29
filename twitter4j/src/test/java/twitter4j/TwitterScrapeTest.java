@@ -5,6 +5,12 @@ import org.junit.Test;
 import twitter4j.auth.AccessToken;
 
 public class TwitterScrapeTest {
+
+	public static void main(String... args) {
+
+		new TwitterScrapeTest().testStreaming();
+	}
+
 	private static final AccessToken ACCESS_TOKEN = new AccessToken(
 			"78873076-3RTKJgR7nCQLWfjPkJ0rmZqYVHk9zoRJHGcum6Sdl", "z4NfWkFvH5tpaLwNhRnzqFnOBHkdSCOJ8Wn084N9kV2vy");
 
@@ -19,8 +25,8 @@ public class TwitterScrapeTest {
 		query.setSince("2015-06-01");
 		QueryResult result = twitter.search(query);
 		for (Status status : result.getTweets()) {
-			System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText() + ": "
-					+ status.getCreatedAt());
+			System.out.println(
+					"@" + status.getUser().getScreenName() + ": " + status.getText() + ": " + status.getCreatedAt());
 		}
 	}
 
@@ -59,5 +65,6 @@ public class TwitterScrapeTest {
 		};
 		twitterStream.addListener(listener);
 		twitterStream.sample();
+
 	}
 }
